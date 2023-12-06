@@ -78,7 +78,7 @@ namespace ZapateriaTBD.ViewsModel
                     contexto.Agregar(Zapatox);
                     Vista = "VerFrutas";
                     ActualizarBD();
-                    //ActualizarVistas();
+               
                 }
                 else
                 {
@@ -108,7 +108,7 @@ namespace ZapateriaTBD.ViewsModel
         private void ActualizarBD()
         {
             ListaZapatos.Clear();
-            //*Cargue toda la informacion de la base de datos utilizando DTO
+            
             foreach (var z in zDTO.GetAll())
             {
                 ListaZapatos.Add(z);

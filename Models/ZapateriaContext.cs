@@ -15,6 +15,8 @@ public partial class ZapateriaContext : DbContext
     {
     }
 
+    public virtual DbSet<Categorias> Categorias { get; set; }
+
     public virtual DbSet<Zapatos> Zapatos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -27,16 +29,31 @@ public partial class ZapateriaContext : DbContext
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
 
+        modelBuilder.Entity<Categorias>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("categorias");
+
+            entity.Property(e => e.Nombre).HasMaxLength(45);
+        });
+
         modelBuilder.Entity<Zapatos>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity.ToTable("zapatos");
 
+            entity.HasIndex(e => e.IdCategorias, "fkCategoriasZapatos_idx");
+
             entity.Property(e => e.Color).HasMaxLength(20);
             entity.Property(e => e.Descripcion).HasMaxLength(100);
             entity.Property(e => e.Marca).HasMaxLength(50);
             entity.Property(e => e.Precio).HasPrecision(10);
+
+            entity.HasOne(d => d.IdCategoriasNavigation).WithMany(p => p.Zapatos)
+                .HasForeignKey(d => d.IdCategorias)
+                .HasConstraintName("fkCategoriasZapatos");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -16,4 +16,8 @@ public partial class Zapatos
     public string? Color { get; set; }
 
     public string? Descripcion { get; set; }
+
+    public int? IdCategorias { get; set; }
+
+    public virtual Categorias? IdCategoriasNavigation { get; set; }
 }

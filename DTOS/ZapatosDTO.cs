@@ -11,7 +11,7 @@ namespace ZapateriaTBD.DTOS
         ZapateriaContext contenedor = new();
         public IEnumerable<Zapatos> GetAll()
         {
-            return contenedor.Zapatos.OrderBy(x => x.Marca);
+            return contenedor.Zapatos.Include(x=>x.IdCategoriasNavigation). OrderBy(x => x.Marca);
         }
 
         public void Agregar(Zapatos Z)
@@ -62,6 +62,7 @@ namespace ZapateriaTBD.DTOS
                     zp.Color = Z.Color;
                     zp.Precio = Z.Precio;
                     zp.Talla = Z.Talla;
+                    zp.IdCategorias = Z.IdCategorias;
                 }
                 contenedor.SaveChanges();
             }

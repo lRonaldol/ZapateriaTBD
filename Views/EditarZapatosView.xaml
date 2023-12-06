@@ -27,10 +27,18 @@
         <TextBox FontFamily="Verdana" FontSize="20" Text="{Binding Zapatoss.Color}"></TextBox>
         <TextBlock FontFamily="Verdana" FontSize="20" >Descripcion:</TextBlock>
         <TextBox FontFamily="Verdana" FontSize="20" Text="{Binding Zapatoss.Descripcion}"></TextBox>
+        <TextBlock FontFamily="Verdana" FontSize="20" >Categorias:</TextBlock>
+        <ComboBox ItemsSource="{Binding ListaCategorias}"
+    DisplayMemberPath="Nombre"
+     SelectedIndex="0"
+    SelectedValuePath="Id"
+   SelectedValue="{Binding Zapatox.IdCategoria}">
+
+        </ComboBox>
         <TextBlock Text="{Binding Error}" Foreground="Red" FontWeight="Bold" FontSize="10"></TextBlock>
         <WrapPanel HorizontalAlignment="Center" Margin="0,40,0,0">
             <Button Name="btnAgregar"  Background="#804000" Padding="5" Width="70" Margin="0,0,5,0" Foreground="White" Command="{Binding EditarCommand}">Editar</Button>
-            <Button Name="btnCancelar"  Background="#804000" Padding="5" Width="70" Foreground="White" Command="{Binding CancelarCommand}">Cancelar</Button>
+            <Button Name="btnCancelar"  Background="#804000" Padding="5" Width="70" Foreground="White" Command="{Binding RegresarCommand}">Cancelar</Button>
         </WrapPanel>
     </StackPanel>
 </UserControl>

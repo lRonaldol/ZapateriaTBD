@@ -15,7 +15,7 @@ namespace ZapateriaTBD.ViewsModel
     public class ZapatosViewModels : INotifyPropertyChanged
 
     {
-
+        public List<Categorias> ListaCategorias {  get; set; }
         public ICommand VerRegistrarCommand { get; set; }
         public ICommand RegistrarCommand { get; set; }
         public ICommand RegresarCommand { get; set; }
@@ -24,15 +24,21 @@ namespace ZapateriaTBD.ViewsModel
         public string Error { get; set; }
         ZapatosDTO contexto = new();
         public Zapatos Zapatox { get; set; }
-
+        ZapatosDTO zDTO= new ZapatosDTO();
         public string Vista {  get; set; }
         public event PropertyChangedEventHandler? PropertyChanged;
         public ObservableCollection<Zapatos> ListaZapatos { get; set; } = new ObservableCollection<Zapatos>();
-        ZapatosDTO zDTO= new ZapatosDTO();
+       CategoriaDTO appDtos = new CategoriaDTO();
 
         public ZapatosViewModels()
         {
+            var datos = zDTO.GetAll();
+            foreach (var dato in datos)
+            {
+                ListaZapatos.Add(dato);
+            }
             ActualizarBD();
+            ListaCategorias = new List<Categorias>(appDtos.GetAll());
             ActualizarVistas();
             VerRegistrarCommand = new RelayCommand(VerRegistrar);
             RegistrarCommand = new RelayCommand(Registrar);
@@ -46,7 +52,7 @@ namespace ZapateriaTBD.ViewsModel
             if (Zapatox != null)
             {
                 contexto.Eliminar(Zapatox);
-                Vista = "VerFrutas";
+                Vista = "VerZapatos";
                 ActualizarVistas();
                 ActualizarBD();
             }
@@ -63,7 +69,7 @@ namespace ZapateriaTBD.ViewsModel
 
         private void Regresar()
         {
-            Vista = "VerFrutas";
+            Vista = "VerZapatos";
             ActualizarVistas();
             Zapatox = null;
         }
@@ -76,7 +82,7 @@ namespace ZapateriaTBD.ViewsModel
                 if (contexto.Validar(Zapatox, out List<string> Errores))
                 {
                     contexto.Agregar(Zapatox);
-                    Vista = "VerFrutas";
+                    Vista = "VerZapatos";
                     ActualizarBD();
                
                 }
@@ -125,7 +131,8 @@ namespace ZapateriaTBD.ViewsModel
                     Precio = Zapatox.Precio,
                     Descripcion = Zapatox.Descripcion,
                     Talla = Zapatox.Talla,
-                    Color = Zapatox.Color
+                    Color = Zapatox.Color,
+                    IdCategorias = Zapatox.IdCategorias,
                     
                 };
                 Vista = "Editar";

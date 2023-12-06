@@ -49,6 +49,14 @@
                 <TextBlock>Descripcion del Zapato:</TextBlock>
                 <TextBox Text="{Binding Zapatox.Descripcion}" />
             </StackPanel>
+            <TextBlock FontFamily="Verdana" FontSize="20" >Categorias:</TextBlock>
+            <ComboBox ItemsSource="{Binding ListaCategorias}"
+          DisplayMemberPath="Nombre"
+           SelectedIndex="0"
+          SelectedValuePath="Id"
+         SelectedValue="{Binding Zapatox.IdCategoria}">
+
+            </ComboBox>
 
 
         </StackPanel>

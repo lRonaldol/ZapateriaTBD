@@ -56,6 +56,7 @@
                                 $ <Run Text="{Binding Precio}"></Run>,
                                 <Run Text="{Binding Color}"></Run>,
                                 <Run Text="{Binding Descripcion}"></Run>
+                                <Run Text="{Binding IdCategoriasNavigation.Nombre}"></Run>
                             </TextBlock>
                         </WrapPanel>
                     </Border>

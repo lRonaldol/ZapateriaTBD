@@ -1,0 +1,55 @@
+﻿<Window x:Class="Zapateria.Views.ZapateriaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zapateria.Views"
+        xmlns:vm="clr-namespace:ZapateriaTBD.ViewsModel"
+        mc:Ignorable="d"
+        Title="ZapateriaView" Height="450" Width="800">
+
+    <Window.DataContext>
+        <vm:ZapatosViewModels></vm:ZapatosViewModels>
+    </Window.DataContext>
+    <DockPanel >
+
+
+        <Label DockPanel.Dock="Bottom" Background="#804000" 
+           Foreground="#804000" 
+           HorizontalContentAlignment="Center"
+           VerticalContentAlignment="Center" 
+          FontSize="6" FontFamily="#804000" Height="16" >Zapateria</Label>
+
+        <ContentControl>
+
+            <ContentControl.Resources>
+                <local:VerZapatosView x:Key="VerZapatos"></local:VerZapatosView>
+                <local:AgregarZapatosView x:Key="Agregar"></local:AgregarZapatosView>
+                <local:EditarZapatosView x:Key="Editar"></local:EditarZapatosView>
+                <local:EliminarZapatosView x:Key="Eliminar"></local:EliminarZapatosView>
+
+            </ContentControl.Resources>
+
+            <ContentControl.Style >
+
+                <Style TargetType="ContentControl">
+                    <Setter Property="Content" Value="{StaticResource VerZapatos}"></Setter>
+                    <Style.Triggers>
+
+                        <DataTrigger  Binding="{Binding Vista }" Value="Agregar">
+                            <Setter Property="Content" Value="{StaticResource Agregar}"></Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Vista}" Value="Eliminar" >
+                            <Setter Property="Content" Value="{StaticResource Eliminar}"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}" Value="Editar">
+                            <Setter Property="Content" Value="{StaticResource Editar}"></Setter>
+                        </DataTrigger>
+
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+    </DockPanel>
+</Window>

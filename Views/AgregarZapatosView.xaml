@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="Zapateria.Views.AgregarZapatosView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Zapateria.Views"
+             mc:Ignorable="d" d:DesignWidth="800" Height="605">
+    <StackPanel  Background="#F0EDEE">
+
+
+        <TextBlock Text="Registro de Zapatos" HorizontalAlignment="Center" VerticalAlignment="Center"
+               FontSize="28" FontWeight="Bold" Margin="0,20" Foreground="#FF9A2C" />
+
+        <StackPanel  Margin="20">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontFamily" Value="Verdana" />
+                    <Setter Property="FontSize" Value="20" />
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="FontFamily" Value="Verdana" />
+                    <Setter Property="FontSize" Value="20" />
+                    <Setter Property="Margin" Value="0,5" />
+                    <Setter Property="Width" Value="300" />
+                </Style>
+            </StackPanel.Resources>
+
+            <StackPanel>
+                <TextBlock>Marca del Zapato:</TextBlock>
+                <TextBox Text="{Binding Zapatox.Marca}" />
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock>Talla del Zapato:</TextBlock>
+                <TextBox Text="{Binding Zapatox.Talla}" />
+            </StackPanel>
+
+        
+
+            <StackPanel>
+                <TextBlock Text="Precio del Zapato:"></TextBlock>
+                <TextBox Text="{Binding Zapatox.Precio}" />
+            </StackPanel> 
+            <StackPanel>
+                <TextBlock>Color del Zapato:</TextBlock>
+                <TextBox Text="{Binding Zapatox.Color}" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock>Descripcion del Zapato:</TextBlock>
+                <TextBox Text="{Binding Zapatox.Descripcion}" />
+            </StackPanel>
+
+
+        </StackPanel>
+
+       
+
+        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0">
+            <Button Name="btnAgregar" Background="#FF9A2C" Padding="10" Width="120" Foreground="White"
+            Command="{Binding RegistrarCommand}">Registrar</Button>
+            <Button Name="btnCancelar" Background="#FF9A2C" Padding="10" Width="120" Foreground="White"
+            Command="{Binding RegresarCommand}">Cancelar</Button> 
+            <TextBlock Text="{Binding Error}" Foreground="Red" FontWeight="Bold" FontSize="10" HorizontalAlignment="Left" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>
